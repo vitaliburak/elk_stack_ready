@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  author: "Julien DAUPHANT"
+  license: BSD
+  min_ansible_version: 1.9
+  platforms:
+    - name: EL
+      versions:
+      - 7
+    - name: GenericBSD
+      versions:
+      - all
+    - name: GenericLinux
+      versions:
+      - all
+    - name: Alpine
+      versions:
+      - all
+      - any
+  galaxy_tags:
+    - web
+    - ssl
+dependencies: []

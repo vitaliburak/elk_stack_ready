@@ -1,0 +1,57 @@
+- hosts: localhost
+  tasks:
+
+  - name: Disable SELinux
+    selinux:
+      state: disabled
+
+  - name: Install Prerequisites
+    import_role:
+      name: prerequisites
+
+  - name: Elk_Stack Repo
+    import_role:
+      name: elk_stack
+
+  - name: Install ElasticSearch
+    import_role:
+      name: elasticsearch
+  
+  - name: Install Kibana
+    import_role:
+      name: kibana
+
+  - name: Install Logstash
+    import_role:
+      name: logstash
+
+  # - name: Install Filebeat
+  #   import_role:
+  #     name: filebeat
+
+  roles:
+  - role: lip-computing.ssl-certs
+    ssl_certs_common_name: "3.238.131.19"
+    ssl_certs_country: "PT"
+    ssl_certs_locality: "Lisbon"
+    ssl_certs_organization: "LIP"
+    ssl_certs_state: "Lisbon"
+    ssl_certs_path_owner: "root"
+    ssl_certs_path_group: "root"
+    ssl_certs_generate_dh_param: true
+
+- hosts: remote
+  tasks:
+
+  - name: Disable SELinux
+    selinux:
+      state: disabled
+
+  - name: Elk_Stack Repo
+    import_role:
+      name: elk_stack
+
+  - name: Install Filebeat
+    import_role:
+      name: filebeat
+
